@@ -1,6 +1,17 @@
 //
 // Kaidu ESP32 firmware for testing and development BLE configuration apps
 //
+// when app connects to esp32 via ble, the following characteristics are to reading/writing the wifi credentials
+// CHARACTERISTIC_UUID_SSID        "8f7e1831-70b5-46b4-b09f-eda20e4b6a7b"
+// CHARACTERISTIC_UUID_PSWD        "8f7e1832-70b5-46b4-b09f-eda20e4b6a7b"
+//
+// to get the scanned wifi list, keep reading the following characteristics, the ssid names/rssi will loop back
+// so when a ssid name/rssi repeats, then it is time to stop reading the characteristic
+// CHARACTERISTIC_UUID_WIFI        "8f7e1836-70b5-46b4-b09f-eda20e4b6a7b"
+//
+// example: "MyWifiName\t-50" contains the ssid "MyWifiName" and signal strength -50 db.
+// note "\t" is a tab character, ascii 0x09
+//
 
 #define KAIDU_SHOW_LOGS 1
 #define KAIDU_SHOW_HEAP_LOGS 1

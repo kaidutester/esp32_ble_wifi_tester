@@ -22,7 +22,7 @@
 #define CHARACTERISTIC_UUID_CERT        "8f7e1833-70b5-46b4-b09f-eda20e4b6a7b"
 #define CHARACTERISTIC_UUID_DVID        "8f7e1834-70b5-46b4-b09f-eda20e4b6a7b"
 #define CHARACTERISTIC_UUID_STATS       "8f7e1835-70b5-46b4-b09f-eda20e4b6a7b"
-#define CHARACTERISTIC_UUID_LOGS        "8f7e1836-70b5-46b4-b09f-eda20e4b6a7b"
+#define CHARACTERISTIC_UUID_WIFI        "8f7e1836-70b5-46b4-b09f-eda20e4b6a7b"
 #define CHARACTERISTIC_UUID_CUST        "8f7e1837-70b5-46b4-b09f-eda20e4b6a7b"
 
 #define SERVICE_UUID_OTA                "c8659210-af91-4ad3-a995-a58d6fd26145" // UART service UUID
@@ -150,7 +150,7 @@ class MyCharacteristicsCallbacks: public BLECharacteristicCallbacks {
         Serial.println(F("ble_server: onRead:"));
         //Serial.println(pCharacteristic->getUUID().toString().c_str());
         std::string uuid = pCharacteristic->getUUID().toString();
-        if (uuid == CHARACTERISTIC_UUID_LOGS) {
+        if (uuid == CHARACTERISTIC_UUID_WIFI) {
           wifi_get_next_wifi_ssid(ble_server_logs_value_buffer, sizeof(ble_server_logs_value_buffer));
           Serial.println(ble_server_logs_value_buffer);
           pCharacteristicLogs->setValue(ble_server_logs_value_buffer);
@@ -197,8 +197,8 @@ class MyCharacteristicsCallbacks: public BLECharacteristicCallbacks {
         configuration_write(CONFIGURATION_MQTT_DVID, rxValue.c_str());
         ble_server_values_updated = true;
       }
-      else if (uuid == CHARACTERISTIC_UUID_LOGS) {
-        Serial.print(F("ble_server: write: CHARACTERISTIC_UUID_LOGS = "));
+      else if (uuid == CHARACTERISTIC_UUID_WIFI) {
+        Serial.print(F("ble_server: write: CHARACTERISTIC_UUID_WIFI = "));
         Serial.println(rxValue.c_str());
         snprintf(ble_server_logs_value_buffer, sizeof(ble_server_logs_value_buffer), "%s", rxValue.c_str());
         //pCharacteristicLogs->setValue(ble_server_logs_value_buffer);
@@ -418,12 +418,12 @@ void ble_server_start() {
     // use notify-property when logging messages is implemented
     #ifdef BLE_SERVER_ENABLE_LOGS
     pCharacteristicLogs = pServiceKaidu->createCharacteristic(
-                           CHARACTERISTIC_UUID_LOGS,
+                           CHARACTERISTIC_UUID_WIFI,
                            NIMBLE_PROPERTY::READ | NIMBLE_PROPERTY::WRITE | NIMBLE_PROPERTY::NOTIFY
                           );
     #else
     pCharacteristicLogs = pServiceKaidu->createCharacteristic(
-                           CHARACTERISTIC_UUID_LOGS,
+                           CHARACTERISTIC_UUID_WIFI,
                            NIMBLE_PROPERTY::READ
                           );
     #endif
