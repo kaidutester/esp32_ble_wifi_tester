@@ -2,14 +2,14 @@
 // LED related functions
 //
 // ESP32 devkit LEDS IO2(blue)
-// MOKO board LEDS IO26(red), IO27(green), IO14(blue)
+// Custom board LEDS IO26(red), IO27(green), IO14(blue)
 //
 // this code assumes we have the 3 leds, but for dev-kit it will merge all leds into one
 //
 
-//#define LED_LOG_ENABLE 1
+#define LED_LOG_ENABLE 1
 
-#define MOKO_LED 1 //enable 3leds
+//#define CUSTOM_LED 1 //enable 3leds
 
 #define LED_RED 0
 #define LED_GREEN 1
@@ -46,7 +46,7 @@ void led_all_toggle (boolean status);
 
 void led_blue_toggle (bool status) {
   //Serial.println(F("Toggle BLUE"));
-  #ifdef MOKO_LED
+  #ifdef CUSTOM_LED
   if (status) digitalWrite(LED_MOKO_BLUE_PIN_NUM, LOW);
   else digitalWrite(LED_MOKO_BLUE_PIN_NUM, HIGH);
   #else
@@ -57,7 +57,7 @@ void led_blue_toggle (bool status) {
 
 void led_green_toggle (boolean status) {
   //Serial.println(F("Toggle GREEN"));
-  #ifdef MOKO_LED
+  #ifdef CUSTOM_LED
   if (status) digitalWrite(LED_MOKO_GREEN_PIN_NUM, LOW);
   else digitalWrite(LED_MOKO_GREEN_PIN_NUM, HIGH);
   #else
@@ -68,7 +68,7 @@ void led_green_toggle (boolean status) {
 
 void led_red_toggle (boolean status) {
   //Serial.println(F("Toggle RED"));
-  #ifdef MOKO_LED
+  #ifdef CUSTOM_LED
   if (status) digitalWrite(LED_MOKO_RED_PIN_NUM, LOW);
   else digitalWrite(LED_MOKO_RED_PIN_NUM, HIGH);
   #else
@@ -80,7 +80,7 @@ void led_red_toggle (boolean status) {
 //////////////// external functions /////////////////////
 
 void led_setup () {
-  #ifdef MOKO_LED
+  #ifdef CUSTOM_LED
   pinMode(LED_MOKO_RED_PIN_NUM, OUTPUT);
   digitalWrite(LED_MOKO_RED_PIN_NUM, HIGH);
   pinMode(LED_MOKO_BLUE_PIN_NUM, OUTPUT);
@@ -180,7 +180,7 @@ void led_toggle (boolean status) {
 }
 
 void led_all_toggle (boolean status) {
-  #ifdef MOKO_LED
+  #ifdef CUSTOM_LED
   if (status) {
     digitalWrite(LED_MOKO_RED_PIN_NUM, LOW);
     digitalWrite(LED_MOKO_GREEN_PIN_NUM, LOW);

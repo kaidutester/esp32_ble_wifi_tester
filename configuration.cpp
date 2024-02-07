@@ -1,9 +1,6 @@
 //
 // read configuration from preferences
 // write configuration by ble-server
-// TODO- last reboot datetime, mqtt/wifi state
-// TODO- function to wipe all configuration data (aka factory-reset)
-// TODO- customer-id
 //
 
 #include "Preferences.h"

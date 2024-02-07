@@ -11,13 +11,9 @@
 #define KAIDU_CMD_SHOW_LOGS 1
 
 // note: try direct-url first, then try server-url
-#ifdef KAIDU_CONFIG_SERVER_DEV
-#define KAIDU_CONFIG_SERVER_URL String(F("http://kaidu-configserver-devtest2.azurewebsites.net/")) //String(F("http://kaidu-pc.local:8000/")) //String(F("http://192.168.2.111:3000/"))
-#define KAIDU_CONFIG_SERVER_DIRECT1 String(F("http://kaidu-configserver-devtest1.azurewebsites.net/")) //default-dev
-#else
-#define KAIDU_CONFIG_SERVER_URL String(F("http://kaidu-configserver-prod1.azurewebsites.net/")) //String(F("http://kaidu-pc.local:8000/")) //kaidu-hub
-#define KAIDU_CONFIG_SERVER_DIRECT1 String(F("http://kaidu-config1.deeppixel.ai/")) //default-prod
-#endif
+#define KAIDU_CONFIG_SERVER_URL String(F("http://kaidu-configserver-devtest2.azurewebsites.net/"))
+#define KAIDU_CONFIG_SERVER_DIRECT1 String(F("http://kaidu-configserver-devtest1.azurewebsites.net/")) 
+
 
 #define KAIDU_CMD_MAX_COUNT 3 // retry http command this many times
 #define KAIDU_CMD_TIMEOUT_MILLIS 30000 // each http routine can only take this long to run
